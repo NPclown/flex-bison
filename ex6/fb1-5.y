@@ -9,19 +9,19 @@
 %token EOL
 
 %%
-calclist: /* nothing */ {printf("noting\n");}
- | calclist exp EOL { printf("= %d\n", $2); }
+calclist: /* nothing */ {}
+ | calclist exp EOL { printf("규칙4 (calclist exp EOL => calclist): = %d\n", $2); }
  ;
-exp: factor  {printf ("Factor => Exp : %d\n", $1);}
- | exp ADD factor { printf("ADD : %d + %d \n", $1, $3); $$ = $1 + $3; }
- | exp SUB factor { printf("SUB : %d - %d \n", $1, $3); $$ = $1 - $3; }
+exp: factor  {printf ("규칙3 (factor => exp) : %d\n", $1);}
+ | exp ADD factor { printf("규칙3 (exp ADD factor => exp) : %d + %d \n", $1, $3); $$ = $1 + $3; }
+ | exp SUB factor { printf("규칙3 (exp SUB factor => exp) : %d - %d \n", $1, $3); $$ = $1 - $3; }
  ;
-factor: term {printf ("Term => Factor: %d\n", $1);}
- | factor MUL term { printf("MUL : %d * %d \n", $1, $3); $$ = $1 * $3; }
- | factor DIV term { printf("DIV : %d / %d \n", $1, $3); $$ = $1 / $3; }
+factor: term {printf ("규칙2 (term => factor) : %d\n", $1);}
+ | factor MUL term { printf("규칙2 (factor MUL term => factor) : %d * %d \n", $1, $3); $$ = $1 * $3; }
+ | factor DIV term { printf("규칙2 (factor DIV term => factor) : %d / %d \n", $1, $3); $$ = $1 / $3; }
  ;
-term: NUMBER { printf("NUM => Term: %d \n", $1); }
- | ABS term { printf("ABS : %d \n", $2); $$ = $2 >= 0? $2 : - $2; }
+term: NUMBER { printf("규칙1 (NUMBER => term) : %d \n", $1); }
+ | ABS term { printf("규칙1 (ABS term => term)  : %d \n", $2); $$ = $2 >= 0? $2 : - $2; }
  ;
 %%
 main(int argc, char **argv)

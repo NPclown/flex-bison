@@ -3,12 +3,12 @@
 %}
 
 %%
-"+" { printf("ADD Detect\n"); return ADD; }
-"-" { printf("SUB Detect\n"); return SUB; }
-"*" { printf("MUL Detect\n"); return MUL; }
-"/" { printf("DIV Detect\n"); return DIV; }
-"|" { printf("ABS Detect\n"); return ABS; }
-[0-9]+ { yylval = atoi(yytext); printf("NUM Detect\n"); return NUMBER; }
+"+" { printf("ADD Token Detect\n"); return ADD; }
+"-" { printf("SUB Token Detect\n"); return SUB; }
+"*" { printf("MUL Token Detect\n"); return MUL; }
+"/" { printf("DIV Token Detect\n"); return DIV; }
+"|" { printf("ABS Token Detect\n"); return ABS; }
+[0-9]+ { yylval = atoi(yytext); printf("NUM Token Detect\n"); return NUMBER; }
 \n { return EOL; }
 [ \t] { /* ignore whitespace */ }
 . { printf("Mystery character %c\n", *yytext); }
